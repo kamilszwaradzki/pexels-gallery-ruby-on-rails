@@ -1,0 +1,18 @@
+<h1>Pexels Collection Viewer</h1>
+
+<%= form_with url: root_path, method: :get, local: true do |form| %>
+  <%= form.label :collection_id, "Enter Pexels Collection ID" %>
+  <%= form.text_field :collection_id, value: params[:collection_id] %>
+  <%= form.submit "Show Photos" %>
+<% end %>
+
+<% if @photos.present? %>
+  <h2>Photos in Collection</h2>
+  <div style="display:flex; flex-wrap: wrap;">
+    <% @photos.each do |photo| %>
+      <div style="margin:10px;">
+        <img src="<%= photo["src"]["medium"] %>" alt="<%= photo["alt"] %>">
+      </div>
+    <% end %>
+  </div>
+<% end %>
